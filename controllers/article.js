@@ -29,6 +29,7 @@ module.exports = {
         }
 
         articleArgs.author = req.user.id;
+        articleArgs.views = 0;
         Article.create(articleArgs).then(article => {
             req.user.articles.push(article.id);
             req.user.save(err => {
@@ -45,15 +46,19 @@ module.exports = {
         let id = req.params.id;
 
         Article.findById(id).populate('author').then(article => {
+            Article.update({_id: id}, {$set: {views: article.views + 1}})
+                .then(updateStatus => {
+                    res.render('article/details', article);
+                });
 
-            res.render('article/details', article);
-        })
+        });
+
     },
 
     editGet: (req, res) => {
         let id = req.params.id;
         Article.findById(id).then(article => {
-            if ( req.user && ( req.user.isAdmin || req.user.isAuthor(article))) {
+            if (req.user && ( req.user.isAdmin || req.user.isAuthor(article))) {
 
                 res.render('article/edit', article);
             }
@@ -94,11 +99,14 @@ module.exports = {
     deleteGet: (req, res) => {
         let id = req.params.id;
         Article.findById(id).then(article => {
-            if (req.user === undefined || !(req.user.isAuthor(article))) {
-                res.render('home/index', {error: 'You cannot edit this article!'});
-                return;
+            if (req.user && ( req.user.isAdmin || req.user.isAuthor(article))) {
+
+                res.render('article/delete', article);
             }
-            res.render('article/delete', article);
+            else {
+                res.render('home/index', {error: 'You cannot delete this article!'});
+            }
+
         });
     },
 
@@ -112,7 +120,7 @@ module.exports = {
                     res.redirect('/', {error: err.message});
                 } else {
                     if (req.user === undefined || !(req.user.isAuthor(article))) {
-                        res.render('home/index', {error: 'You cannot edit this article!'});
+                        res.render('home/index', {error: 'You cannot delete this article!'});
                         return;
                     }
                     res.redirect('/')

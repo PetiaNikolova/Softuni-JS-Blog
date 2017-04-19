@@ -62,6 +62,7 @@ module.exports.initialize=()=>{
                 email:email,
                 fullName:'Admin',
                 roles:[role.id],
+                isAdmin:true,
                 articles:[],
                 salt:salt,
                 passwordHash:passwordHash

@@ -7051,8 +7051,16 @@ article .author  {
   display: block;
   font-size: 100%;
   line-height: 1.42857143;
-  color: #b4bcc2;
+  color: #708090;
 }
 article .author  {
   content: '\2014 \00A0';
+}
+article .views {
+  margin-top: 10px;
+  display: block;
+  font-size: 100%;
+  line-height: 1.42857143;
+  color: #b4bcc2;
+
 }
