@@ -1,6 +1,7 @@
 const Article = require('mongoose').model('Article');
 const User = require('mongoose').model('User');
 
+
 function validateArticles(articleArgs, req) {
     let errorMsg = '';
     if (!req.isAuthenticated()) {
@@ -127,5 +128,33 @@ module.exports = {
                 }
             });
         });
+    },
+
+    createCommentPost: (req,res)=>{
+
+        let id = req.params.id;
+        let comment = req.body.comment;
+        let user = req.user.id;
+        let comments = [];
+
+
+            Article.findById(id).then(article => {
+                if (req.user === undefined ) {
+                    res.render('home/index', {error: 'You cannot post comments!'});
+                    return;
+                }
+
+                comments = article.comments;
+
+                comments.push({user: user, comment: comment});
+                Article.update({_id: id}, {$set: {comments: comments}})
+                    .then(updateStatus => {
+                        res.redirect(`/article/details/${id}`)
+                    });
+            });
+
+
     }
+
+
 };

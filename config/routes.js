@@ -24,5 +24,8 @@ module.exports = (app) => {
     app.get('/article/delete/:id', articleController.deleteGet);
     app.post('/article/delete/:id', articleController.deletePost);
 
+    //app.get('/article/createComment/:id', articleController.createCommentGet);
+    app.post('/article/createComment/:id', articleController.createCommentPost);
+
 };
 

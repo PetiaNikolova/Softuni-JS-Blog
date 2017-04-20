@@ -18,6 +18,23 @@
                     Views: {{views}}
                 </small>
 
+                <form class="form-horizontal comment-form" method="POST" action="/article/createComment/{{id}}">
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label" for="articleComment">Comment</label>
+                            <div class="col-sm-3">
+                                <textarea class="form-control" id="articleComment" rows="5" name="comment" required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-1 col-sm-offset-1">
+
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+
+                </form>
+
                 <footer>
                     <div class="pull-right">
                         <a class="btn btn-success btn-xs" href="/article/edit/{{id}}">Edit &raquo;</a>
