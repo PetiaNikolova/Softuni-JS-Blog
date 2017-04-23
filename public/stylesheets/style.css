@@ -7063,6 +7063,10 @@ article .views {
   line-height: 1.42857143;
   color: #b4bcc2;
 }
-.comment-form {
+.sidebar {
+}
 
+.category-name-sidebar {
+  font-size: 19px;
+  margin-right: 30%;
 }

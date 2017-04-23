@@ -130,31 +130,40 @@ module.exports = {
         });
     },
 
-    createCommentPost: (req,res)=>{
+    createCommentPost: (req, res) => {
 
         let id = req.params.id;
         let comment = req.body.comment;
         let user = req.user.id;
         let comments = [];
 
+        Article.findById(id).then(article => {
+            if (req.user === undefined) {
+                res.render('home/index', {error: 'You cannot post comments!'});
+                return;
+            }
 
-            Article.findById(id).then(article => {
-                if (req.user === undefined ) {
-                    res.render('home/index', {error: 'You cannot post comments!'});
-                    return;
-                }
+            comments = article.comments;
 
-                comments = article.comments;
+            User.findOne({_id: user}).then(user => {
+                comments.push({user: user.fullName, comment: comment});
 
-                comments.push({user: user, comment: comment});
                 Article.update({_id: id}, {$set: {comments: comments}})
                     .then(updateStatus => {
                         res.redirect(`/article/details/${id}`)
                     });
             });
+        });
+    },
+
+    viewCategoryPosts: (req, res) => {
+        let categoryName = req.originalUrl.substring(1);
+
+        Article.find({category:categoryName}).then(articles => {
+            res.render('home/index',{articles: articles});
+        })
 
 
     }
-
 
 };

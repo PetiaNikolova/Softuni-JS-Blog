@@ -24,8 +24,13 @@ module.exports = (app) => {
     app.get('/article/delete/:id', articleController.deleteGet);
     app.post('/article/delete/:id', articleController.deletePost);
 
-    //app.get('/article/createComment/:id', articleController.createCommentGet);
     app.post('/article/createComment/:id', articleController.createCommentPost);
+
+    app.get('/cats', articleController.viewCategoryPosts);
+    app.get('/dogs', articleController.viewCategoryPosts);
+    app.get('/mouses', articleController.viewCategoryPosts);
+    app.get('/hedgehogs', articleController.viewCategoryPosts);
+    app.get('/no-category', articleController.viewCategoryPosts);
 
 };
 

@@ -7,7 +7,8 @@ let articleSchema = mongoose.Schema({
     author: {type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User'},
     views:{type:Number},
     date: {type: Date, default: Date.now()},
-    comments: { type: Array, default:[] }
+    comments: { type: Array, default:[] },
+    category: {type: String}
 });
 
 const Article = mongoose.model('Article', articleSchema);

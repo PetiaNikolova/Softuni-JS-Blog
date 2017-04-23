@@ -1,4 +1,5 @@
 <div class="container body-content">
+
     <div class="row">
         <div class="col-md-12">
             <article>
@@ -11,27 +12,38 @@
                 </p>
 
                 <small class="author">
-                   Author: {{author.fullName}}
+                    Author: {{author.fullName}}
                 </small>
 
                 <small class="views">
                     Views: {{views}}
                 </small>
 
+                {{#each comments}}
+                    <div class="col-md-3">
+                        <small class="author">
+                            {{this.user}}
+                        </small>
+                        <p>{{this.comment}}
+                        </p>
+                    </div>
+                {{/each}}
+                <br><br><br>
                 <form class="form-horizontal comment-form" method="POST" action="/article/createComment/{{id}}">
-                        <div class="form-group">
-                            <label class="col-sm-1 control-label" for="articleComment">Comment</label>
-                            <div class="col-sm-3">
-                                <textarea class="form-control" id="articleComment" rows="5" name="comment" required></textarea>
-                            </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label" for="articleComment">Comment</label>
+                        <div class="col-sm-3">
+                            <textarea class="form-control" id="articleComment" rows="5" name="comment"
+                                      required></textarea>
                         </div>
+                    </div>
 
-                        <div class="form-group">
-                            <div class="col-sm-1 col-sm-offset-1">
+                    <div class="form-group">
+                        <div class="col-sm-1 col-sm-offset-1">
 
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
+                    </div>
 
                 </form>
 
