@@ -101,5 +101,15 @@ module.exports = {
     logout: (req, res) => {
         req.logOut();
         res.redirect('/');
+    },
+
+    userDetails:(req,res)=> {
+        let userID = req.user.id;
+
+        User.findOne({_id: userID}).populate('articles').then(user => {
+            res.render('user/userDetails', {user});
+        });
+
+
     }
 };

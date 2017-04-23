@@ -1,0 +1,32 @@
+<div class="container body-content">
+
+    <div class="row">
+        <div class="col-md-12">
+            <article>
+                <header>
+                    <h2>Welcome, {{user.fullName}}</h2>
+                </header>
+
+                {{#each user.articles}}
+                    <div class="col-md-6">
+                        <article>
+                            <header>
+                                <h2>{{this.title}}</h2>
+                            </header>
+
+                            <p>{{this.content}}
+                            </p>
+
+                            <footer>
+                                <div class="pull-right">
+                                    <a class="btn btn-default btn-xs" href="/article/details/{{this.id}}">Read more &raquo;</a>
+                                </div>
+                            </footer>
+                        </article>
+                    </div>
+                {{/each}}
+
+            </article>
+        </div>
+    </div>
+</div>
