@@ -29,7 +29,22 @@ module.exports = {
             return;
         }
 
+        let image=req.files.image;
+
+        if(image){
+            let fileName=image.name;
+            image.mv(`./public/images/${fileName}`, err=>{
+                if(err) {
+                    console.log(err.message);
+                }
+            });
+            articleArgs.imagePath=`/images/${image.name}`;
+        }
+
         articleArgs.author = req.user.id;
+
+
+
         articleArgs.views = 0;
         Article.create(articleArgs).then(article => {
             req.user.articles.push(article.id);
