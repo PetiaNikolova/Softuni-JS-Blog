@@ -1,5 +1,6 @@
 const Article = require('mongoose').model('Article');
 const User = require('mongoose').model('User');
+const dateFormat = require('dateformat');
 
 
 function validateArticles(articleArgs, req) {
@@ -62,8 +63,11 @@ module.exports = {
         let id = req.params.id;
 
         Article.findById(id).populate('author').then(article => {
+
             Article.update({_id: id}, {$set: {views: article.views + 1}})
                 .then(updateStatus => {
+                    article.formatedDate = dateFormat(article.date, "dd-mm-yyyy HH:mm");
+
                     res.render('article/details', article);
                 });
 
