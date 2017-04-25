@@ -153,7 +153,6 @@ module.exports = {
 
         let id = req.params.id;
         let comment = req.body.comment;
-        let user = req.user.id;
         let comments = [];
 
         Article.findById(id).then(article => {
@@ -161,7 +160,7 @@ module.exports = {
                 res.render('home/index', {error: 'You cannot post comments!'});
                 return;
             }
-
+            let user = req.user.id;
             comments = article.comments;
 
             User.findOne({_id: user}).then(user => {
@@ -180,9 +179,6 @@ module.exports = {
 
         Article.find({category:categoryName}).then(articles => {
             res.render('home/index',{articles: articles});
-        })
-
-
+        });
     }
-
 };

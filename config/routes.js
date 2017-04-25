@@ -34,5 +34,7 @@ module.exports = (app) => {
     app.get('/hedgehogs', articleController.viewCategoryPosts);
     app.get('/no-category', articleController.viewCategoryPosts);
 
+
+
 };
 
