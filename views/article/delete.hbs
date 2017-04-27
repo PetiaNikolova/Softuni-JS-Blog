@@ -16,6 +16,12 @@
                         <textarea class="form-control" id="articleContent" rows="5" name="content" disabled>{{content}}</textarea>
                     </div>
                 </div>
+                <div class="col-sm-6 "  >
+                        {{#if imagePath}}
+                            <img src="{{imagePath}}" width="250"  alt="Article Image">
+                        {{/if}}
+                </div>
+
 
                 <div class="form-group">
                     <div class="col-sm-4 col-sm-offset-4">

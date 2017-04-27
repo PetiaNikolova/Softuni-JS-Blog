@@ -12,7 +12,7 @@
                 </p>
 
                 {{#if imagePath}}
-                <img src="{{imagePath}}" width="500" alt="Article Image">
+                <img src="{{imagePath}}" width="250" alt="Article Image">
                 {{/if}}
 
                 <small class="author">
@@ -26,21 +26,25 @@
                 <small class="views">
                     Views: {{views}}
                 </small>
+                <br>
 
                 {{#each comments}}
-                    <div class="col-md-3">
+                    <div class="col-md-12" >
                         <small class="author">
                             {{this.user}}
                         </small>
                         <p>{{this.comment}}
                         </p>
                     </div>
+
                 {{/each}}
+
+
                 <br><br><br>
                 <form class="form-horizontal comment-form" method="POST" action="/article/createComment/{{id}}">
                     <div class="form-group">
-                        <label class="col-sm-1 control-label" for="articleComment">Comment</label>
-                        <div class="col-sm-3">
+                        <label class="col-sm-1 control-label " style="width: auto" for="articleComment">Comment</label>
+                        <div class="col-sm-4">
                             <textarea class="form-control" id="articleComment" rows="5" name="comment"
                                       required></textarea>
                         </div>
