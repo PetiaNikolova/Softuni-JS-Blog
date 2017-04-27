@@ -32,7 +32,7 @@ module.exports = (app) => {
     app.get('/dogs', articleController.viewCategoryPosts);
     app.get('/mouses', articleController.viewCategoryPosts);
     app.get('/hedgehogs', articleController.viewCategoryPosts);
-    app.get('/no-category', articleController.viewCategoryPosts);
+    app.get('/nocategory', articleController.viewCategoryPosts);
 
 
 
