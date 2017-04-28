@@ -4524,7 +4524,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default {
-  background-color: #a1e293;
+  background-color: #846c27;
   border-color: transparent;
 }
 .navbar-default .navbar-brand {
@@ -7082,7 +7082,7 @@ article .views {
   background-position: right;
   margin-right: 200px;
   background-attachment: fixed;
-  background-color: #ebfff3;
+  background-color: #d4daa7;
   padding-left: 25px;
 
 }
